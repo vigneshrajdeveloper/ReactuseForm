@@ -4,12 +4,18 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 
 
+
+const name='^[a-zA-Z]+$'
+const phone ='\\A[0-9]{10}\\z'
+
 const schema=yup.object().shape({
 
-    name:yup.string().required('name is mandatory'),
-    email:yup.string().email().required('email must not be empty'),
-    phone:yup.number('phone number sholud be number').positive('phone no sholud not negative').required('phone number must not be empty'),
-    age:yup.number().positive().min(18).max(28).required('age shold not be empty')
+        name:yup.string().matches(name,'enter valid name').required('name is compulsory'),
+        email:yup.string().email("Please enter a valid email!").required('email is compulsory'),
+        phone:yup.string().matches(phone,'enter valid phone number').required('phone is compulsory'),
+        age:yup.number().typeError('Age sht be number').integer('decimal not allowed')
+        .positive('-ve shnt not come').min(18,'age is short').max(28,'age is long').required('age is compulsory')
+
 })
 
 export default function Form(){
@@ -26,7 +32,7 @@ export default function Form(){
         <input {...register('name')} type="text" placeholder="name"></input><br />
         <input {...register('email')} type="text" placeholder="email"></input><br />
         <input {...register('phone')}  type="text" placeholder="phonenumber"></input><br />
-        <input {...register('age')} type="number" placeholder="age"></input><br />
+        <input {...register('age')} type="text" placeholder="age"></input><br />
         <input type="submit" ></input><br />
     </form>
     </>
