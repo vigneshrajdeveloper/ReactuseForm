@@ -30,9 +30,13 @@ export default function Form(){
     <form onSubmit={handleSubmit((data)=>console.log(data))}>
 
         <input {...register('name')} type="text" placeholder="name"></input><br />
+        <p>{errors.name?.message}</p>
         <input {...register('email')} type="text" placeholder="email"></input><br />
+        <p>{errors.email?.message}</p>
         <input {...register('phone')}  type="text" placeholder="phonenumber"></input><br />
+        <p>{errors.phone?.message}</p>
         <input {...register('age')} type="number" placeholder="age"></input><br />
+        <p>{errors.age?.message}</p>
         <input type="submit" ></input><br />
     </form>
     </>
